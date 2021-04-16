@@ -15,18 +15,18 @@ app.use(
   }),
 )
 
-mongoose
-  .connect(
+try {
+  mongoose.connect(
     `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.wrcbs.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     },
   )
-  .then(() => {
-    console.log('MongoDB connected')
-  })
-  .catch((error) => console.error)
+  console.log('MongoDB connected')
+} catch (error) {
+  console.log(error)
+}
 
 app.use(isAuth)
 app.use(
