@@ -1,7 +1,7 @@
 const { user } = require('../helpers/transformData')
 const { dateToString } = require('../helpers/date')
-const Event = require('../models/event')
-const User = require('../models/user')
+const Event = require('../models/Event')
+const User = require('../models/User')
 const isAuth = require('../middleware/is-auth')
 
 module.exports = {
