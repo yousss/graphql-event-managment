@@ -34,9 +34,14 @@ try {
 app.use((req, res, next) => {
   res.setHeader('Access-Controll-Allow-Origin', '*')
   res.setHeader('Access-Controll-Allow-Methods', 'POST,GET,OPTIONS')
-  res.setHeader('Access-Controll-Allow-Headers', 'Content-Type,Authorization')
+  res.setHeader(
+    'Access-Controll-Allow-Headers',
+    'Content-Type,X-Requested-With,Authorization',
+  )
+  res.setHeader('Access-Control-Allow-Credentials', true)
+
   if (req.method === 'OPTIONS') {
-    req.sendStatus(200)
+    req.statusCode = 200
   }
   next()
 })
