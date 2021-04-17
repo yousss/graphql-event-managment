@@ -26,7 +26,7 @@ try {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  console.log('MongoDB connected')
+  console.log('MongoDB atlas has been connected')
 } catch (error) {
   console.log(error)
 }
