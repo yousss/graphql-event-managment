@@ -3,11 +3,14 @@ const { graphqlHTTP } = require('express-graphql')
 const typeDefs = require('./src/types/index')
 const resolvers = require('./src/resolvers/index')
 const isAuth = require('./src/middleware/is-auth')
-
+const cors = require('cors')
 const mongoose = require('mongoose')
 
 const port = process.env.PORT || 8080
 const app = express()
+
+app.use(cors())
+
 app.use(express.json())
 app.use(
   express.urlencoded({
@@ -30,21 +33,6 @@ try {
 } catch (error) {
   console.log(error)
 }
-
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS')
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Content-Type,X-Requested-With,Authorization',
-  )
-  res.setHeader('Access-Control-Allow-Credentials', true)
-
-  if (req.method === 'OPTIONS') {
-    req.statusCode = 200
-  }
-  next()
-})
 
 app.get('/', (req, res) => {
   res.send({ hello: 'Welcome to my app' })
