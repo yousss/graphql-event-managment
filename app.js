@@ -6,7 +6,7 @@ const isAuth = require('./src/middleware/is-auth')
 
 const mongoose = require('mongoose')
 
-const port = 8080
+const port = process.env.PORT || 8080
 const app = express()
 app.use(express.json())
 app.use(
