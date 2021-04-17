@@ -32,10 +32,10 @@ try {
 }
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Controll-Allow-Origin', '*')
-  res.setHeader('Access-Controll-Allow-Methods', 'POST,GET,OPTIONS')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS')
   res.setHeader(
-    'Access-Controll-Allow-Headers',
+    'Access-Control-Allow-Headers',
     'Content-Type,X-Requested-With,Authorization',
   )
   res.setHeader('Access-Control-Allow-Credentials', true)
