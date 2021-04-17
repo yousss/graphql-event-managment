@@ -31,6 +31,16 @@ try {
   console.log(error)
 }
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Controll-Allow-Origin', '*')
+  res.setHeader('Access-Controll-Allow-Methods', 'POST,GET,OPTIONS')
+  res.setHeader('Access-Controll-Allow-Headers', 'Content-Type,Authorization')
+  if (req.method === 'OPTIONS') {
+    req.sendStatus(200)
+  }
+  next()
+})
+
 app.get('/', (req, res) => {
   res.send({ hello: 'Welcome to my app' })
 })
