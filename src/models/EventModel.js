@@ -22,7 +22,7 @@ const eventSchema = new Schema(
     },
     creator: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'UserModel',
     },
   },
   {
@@ -30,4 +30,4 @@ const eventSchema = new Schema(
   },
 )
 
-module.exports = mongoose.model('Event', eventSchema)
+module.exports = mongoose.model('EventModel', eventSchema)

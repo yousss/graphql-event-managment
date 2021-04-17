@@ -1,11 +1,11 @@
-const User = require('../models/User')
+const UserModel = require('../models/UserModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 module.exports = {
   users: async () => {
     try {
-      return await User.find({})
+      return await UserModel.find({})
     } catch (error) {
       throw error
     }
@@ -13,13 +13,15 @@ module.exports = {
 
   createUser: async (args) => {
     try {
-      const existingUser = await User.findOne({ email: args.userInput.email })
+      const existingUser = await UserModel.findOne({
+        email: args.userInput.email,
+      })
       if (existingUser) {
         throw new Error('User exists already.')
       }
       const hashedPassword = await bcrypt.hash(args.userInput.password, 12)
 
-      const user = new User({
+      const user = new UserModel({
         email: args.userInput.email,
         username: args.userInput.username,
         phone: args.userInput.phone,
@@ -35,7 +37,7 @@ module.exports = {
     }
   },
   login: async ({ username, password }) => {
-    const user = await User.findOne({ username })
+    const user = await UserModel.findOne({ username })
     if (!user) {
       throw Error('User does not exist')
     }

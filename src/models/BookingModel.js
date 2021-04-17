@@ -6,11 +6,11 @@ const bookingSchema = new Schema(
   {
     event: {
       type: Schema.Types.ObjectId,
-      ref: 'Event',
+      ref: 'EventModel',
     },
     user: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'UserModel',
     },
   },
   {
@@ -18,4 +18,4 @@ const bookingSchema = new Schema(
   },
 )
 
-module.exports = mongoose.model('Booking', bookingSchema)
+module.exports = mongoose.model('BookingModel', bookingSchema)

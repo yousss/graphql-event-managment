@@ -1,10 +1,10 @@
-const Event = require('../models/Event')
-const User = require('../models/User')
+const EventModel = require('../models/EventModel')
+const UserModel = require('../models/UserModel')
 const { dateToString } = require('./date')
 
 const events = async (eventIds) => {
   try {
-    const events = await Event.find({ _id: { $in: eventIds } })
+    const events = await EventModel.find({ _id: { $in: eventIds } })
     return events.map((event) => {
       return {
         ...event._doc,
@@ -20,7 +20,7 @@ const events = async (eventIds) => {
 
 const user = async (userId) => {
   try {
-    const user = await User.findById(userId)
+    const user = await UserModel.findById(userId)
     return {
       ...user._doc,
       _id: user.id,
@@ -33,7 +33,7 @@ const user = async (userId) => {
 }
 
 const singleEvent = async (eventId) => {
-  const event = await Event.findById(eventId)
+  const event = await EventModel.findById(eventId)
   return {
     ...event._doc,
     _id: event.id,

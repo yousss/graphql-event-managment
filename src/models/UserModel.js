@@ -27,7 +27,7 @@ const userSchema = new Schema(
     createdEvents: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Event',
+        ref: 'EventModel',
       },
     ],
   },

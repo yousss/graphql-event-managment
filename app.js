@@ -15,19 +15,25 @@ app.use(
   }),
 )
 
+let production = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.wrcbs.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`
+
+if (process.env.IS_PRODUCTION === 'dev') {
+  production = `mongodb://localhost/${process.env.MONGODB_DB}`
+}
+
 try {
-  mongoose.connect(
-    `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.wrcbs.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    },
-  )
+  mongoose.connect(production, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   console.log('MongoDB connected')
 } catch (error) {
   console.log(error)
 }
 
+app.get('/', (req, res) => {
+  res.send({ hello: 'Welcome to my app' })
+})
 app.use(isAuth)
 app.use(
   '/graphql',

@@ -1,15 +1,14 @@
 const { dateToString } = require('../helpers/date')
 const { user, singleEvent } = require('../helpers/transformData')
-const Event = require('../models/event')
-const Booking = require('../models/Booking')
-const isAuth = require('../middleware/is-auth')
+const EventModel = require('../models/EventModel')
+const BookingModel = require('../models/BookingModel')
 
 module.exports = {
   bookings: async (args, req) => {
     if (!req.isAuth) {
       throw Error('Unauthenticated.')
     }
-    const bookings = await Booking.find({})
+    const bookings = await BookingModel.find({})
     return bookings.map((booking) => {
       return {
         ...booking._doc,
@@ -25,7 +24,7 @@ module.exports = {
     if (!req.isAuth) {
       throw Error('Unauthenticated.')
     }
-    const fetchEvent = await Event.findOne({ _id: args.eventId })
+    const fetchEvent = await EventModel.findOne({ _id: args.eventId })
     const bookingEvent = new Booking({
       event: fetchEvent,
       user: req.userId,
@@ -46,7 +45,7 @@ module.exports = {
       throw Error('Unauthenticated.')
     }
     try {
-      const booking = await Booking.findOne({ _id: args.bookingId })
+      const booking = await BookingModel.findOne({ _id: args.bookingId })
       const event = {
         ...booking._doc,
         _id: booking.event,

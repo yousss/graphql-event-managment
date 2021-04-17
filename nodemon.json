@@ -2,6 +2,7 @@
   "env": {
     "MONGODB_USER": "learningUser",
     "MONGODB_PASSWORD": "zZ5jkW3OiUZK2AIr",
-    "MONGODB_DB": "training"
+    "MONGODB_DB": "training",
+    "IS_PRODUCTION": "dev"
   }
 }

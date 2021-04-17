@@ -1,13 +1,12 @@
 const { user } = require('../helpers/transformData')
 const { dateToString } = require('../helpers/date')
-const Event = require('../models/Event')
-const User = require('../models/User')
-const isAuth = require('../middleware/is-auth')
+const EventModel = require('../models/EventModel')
+const UserModel = require('../models/UserModel')
 
 module.exports = {
   events: async () => {
     try {
-      const events = await Event.find()
+      const events = await EventModel.find()
       return events.map((event) => {
         return {
           ...event._doc,
@@ -25,7 +24,7 @@ module.exports = {
     if (!req.isAuth) {
       throw Error('Unauthenticated.')
     }
-    const event = new Event({
+    const event = new EventModel({
       title: args.eventInput.title,
       description: args.eventInput.description,
       price: +args.eventInput.price,
@@ -41,7 +40,7 @@ module.exports = {
         date: dateToString(event._doc.date),
         creator: user.bind(this, result._doc.creator),
       }
-      const creator = await User.findById(req.userId)
+      const creator = await UserModel.findById(req.userId)
 
       if (!creator) {
         throw new Error('User not found.')
