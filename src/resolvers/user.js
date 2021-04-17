@@ -24,7 +24,7 @@ module.exports = {
       const user = new UserModel({
         email: args.userInput.email,
         username: args.userInput.username,
-        phone: args.userInput.phone,
+        full_name: args.userInput.full_name,
         address: args.userInput.address,
         password: hashedPassword,
       })
