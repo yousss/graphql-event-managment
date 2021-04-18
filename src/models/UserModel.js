@@ -24,6 +24,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    phone: {
+      type: String,
+      required: false,
+    },
     createdEvents: [
       {
         type: Schema.Types.ObjectId,

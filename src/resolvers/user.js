@@ -26,6 +26,7 @@ module.exports = {
         username: args.userInput.username,
         full_name: args.userInput.full_name,
         address: args.userInput.address,
+        phone: args.userInput.phone,
         password: hashedPassword,
       })
 
@@ -57,5 +58,13 @@ module.exports = {
       token,
       tokenExpiration: 1,
     }
+  },
+  verifyToken: async (token) => {
+    return jwt.verify(token, 'superSecret', function (err, decoded) {
+      if (err) {
+        throw Error('Token is incorrect.')
+      }
+      return true
+    })
   },
 }
