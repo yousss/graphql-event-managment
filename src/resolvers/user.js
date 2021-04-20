@@ -59,12 +59,16 @@ module.exports = {
       tokenExpiration: 1,
     }
   },
-  verifyToken: async (token) => {
-    return jwt.verify(token, 'superSecret', function (err, decoded) {
+  verifyToken: async (args) => {
+    let result
+    jwt.verify(args.token, 'superSecret', function (err, decoded) {
       if (err) {
         throw Error('Token is incorrect.')
       }
-      return true
+      result = decoded
     })
+    if (result) return { verified: true }
+
+    return { verified: false }
   },
 }

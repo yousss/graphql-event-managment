@@ -45,6 +45,9 @@ input UserInput {
   full_name: String!
   password: String!
 }
+type ReturnVerifiedToken {
+  verified: Boolean!
+}
 type RootQuery {
     events: [Event!]!
     bookings: [Booking!]!
@@ -56,7 +59,7 @@ type RootMutation {
     bookEvent(eventId: ID!): Booking!
     cancellBookingEvent(bookingId: ID!) : Event!
     login(username:String, password:String): AuthData!
-    verifyToken(token:String): Boolean
+    verifyToken(token:String!): ReturnVerifiedToken!
 }
 schema {
     query: RootQuery
