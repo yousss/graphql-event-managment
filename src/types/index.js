@@ -49,7 +49,6 @@ type RootQuery {
     events: [Event!]!
     bookings: [Booking!]!
     users: [User!]
-    verifyToken: Boolean
 }
 type RootMutation {
     createEvent(eventInput: EventInput): Event
@@ -57,6 +56,7 @@ type RootMutation {
     bookEvent(eventId: ID!): Booking!
     cancellBookingEvent(bookingId: ID!) : Event!
     login(username:String, password:String): AuthData!
+    verifyToken(token:String): Boolean
 }
 schema {
     query: RootQuery
