@@ -48,8 +48,9 @@ input UserInput {
 type ReturnVerifiedToken {
   verified: Boolean!
 }
+
 type RootQuery {
-    events: [Event!]!
+    events(count: Int): [Event!]!
     bookings: [Booking!]!
     users: [User!]
 }

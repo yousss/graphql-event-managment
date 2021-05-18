@@ -4,9 +4,10 @@ const EventModel = require('../models/EventModel')
 const UserModel = require('../models/UserModel')
 
 module.exports = {
-  events: async () => {
+  events: async ({ count = 100 }) => {
     try {
-      const events = await EventModel.find()
+      let events = await EventModel.find({})
+      events = events.slice(0, count)
       return events.map((event) => {
         return {
           ...event._doc,
