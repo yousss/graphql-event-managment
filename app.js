@@ -20,9 +20,9 @@ app.use(
 
 let production = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.wrcbs.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`
 
-if (process.env.IS_PRODUCTION === 'dev') {
-  production = `mongodb://localhost/${process.env.MONGODB_DB}`
-}
+// if (process.env.IS_PRODUCTION === 'dev') {
+//   production = `mongodb://localhost/${process.env.MONGODB_DB}`
+// }
 
 try {
   mongoose.connect(production, {

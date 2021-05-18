@@ -4,11 +4,13 @@ const EventModel = require('../models/EventModel')
 const UserModel = require('../models/UserModel')
 
 module.exports = {
-  events: async ({ count = 100 }) => {
+  events: async ({ rowPerPage = 10, page = 1 }) => {
+    let accPage = (page - 1) * rowPerPage
     try {
-      let events = await EventModel.find({})
-      events = events.slice(0, count)
-      return events.map((event) => {
+      const rowCount = await EventModel.count()
+      let events = await EventModel.find({}).skip(accPage).limit(rowPerPage)
+
+      const newEvents = events.map((event) => {
         return {
           ...event._doc,
           _id: event.id,
@@ -16,6 +18,10 @@ module.exports = {
           creator: user.bind(this, event._doc.creator),
         }
       })
+      return {
+        pageInfo: { rowCount },
+        events: newEvents,
+      }
     } catch (err) {
       throw err
     }

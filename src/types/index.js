@@ -49,8 +49,17 @@ type ReturnVerifiedToken {
   verified: Boolean!
 }
 
+type PageSize {
+  rowCount:Int
+}
+
+type EventReturn {
+  events: [Event!]!
+  pageInfo: PageSize
+}
+
 type RootQuery {
-    events(count: Int): [Event!]!
+    events(rowPerPage: Int, page:Int): EventReturn!
     bookings: [Booking!]!
     users: [User!]
 }
