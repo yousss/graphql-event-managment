@@ -51,7 +51,7 @@ module.exports = {
         _id: booking.event,
         creator: user.bind(this, booking.user),
       }
-      await Booking.deleteOne({ _id: args.bookingId })
+      await BookingModel.deleteOne({ _id: args.bookingId })
       return event
     } catch (err) {
       throw err
