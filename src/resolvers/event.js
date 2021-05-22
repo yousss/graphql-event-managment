@@ -37,6 +37,7 @@ module.exports = {
       price: +args.eventInput.price,
       date: dateToString(args.eventInput.date),
       creator: req.userId,
+      isBooked: 1,
     })
     let createdEvent
     try {

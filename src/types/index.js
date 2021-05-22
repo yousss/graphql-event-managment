@@ -12,7 +12,8 @@ type Event {
   _id: ID!
   title: String!
   description: String!
-  price: Float!
+  price: Float
+  isBooked:Int
   date: String!
   creator: User!
 }

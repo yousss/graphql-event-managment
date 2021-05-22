@@ -25,10 +25,13 @@ module.exports = {
       throw Error('Unauthenticated.')
     }
     const fetchEvent = await EventModel.findOne({ _id: args.eventId })
-    const bookingEvent = new Booking({
+
+    const bookingEvent = new BookingModel({
       event: fetchEvent,
       user: req.userId,
     })
+    fetchEvent.isBooked = 2
+    await fetchEvent.save()
     const result = await bookingEvent.save()
     return {
       ...result._doc,

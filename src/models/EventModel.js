@@ -14,7 +14,11 @@ const eventSchema = new Schema(
     },
     price: {
       type: Number,
-      required: true,
+      required: false,
+    },
+    isBooked: {
+      type: Number,
+      required: false,
     },
     date: {
       type: Date,
